@@ -338,3 +338,69 @@ LefaceCrossPlatform(t) {
         } else console.error("No CSS defined for the current platform.");
     }
 }
+
+class LefaceUtils {
+    static loadExternalCSS(url) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = url;
+        document.head.appendChild(link);
+    }
+
+    static loadExternalJS(url) {
+        return new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = url;
+            script.onload = resolve;
+            script.onerror = reject;
+            document.head.appendChild(script);
+        });
+    }
+
+    static insertHTML(selector, html) {
+        const element = document.querySelector(selector);
+        if (element) {
+            element.innerHTML = html;
+        }
+    }
+
+    static setElementAttribute(selector, attribute, value) {
+        const element = document.querySelector(selector);
+        if (element) {
+            element.setAttribute(attribute, value);
+        }
+    }
+
+    static toggleVisibility(selector) {
+        const element = document.querySelector(selector);
+        if (element) {
+            if (element.style.display === 'none') {
+                element.style.display = '';
+            } else {
+                element.style.display = 'none';
+            }
+        }
+    }
+
+    static sanitizeHTML(html) {
+        const template = document.createElement('template');
+        template.innerHTML = html;
+
+        const content = template.content;
+
+        const elements = content.querySelectorAll('script, link[rel="import"], object, embed, iframe');
+        elements.forEach(el => el.remove());
+
+        const attributes = ['onerror', 'onload', 'onclick', 'onmouseover', 'onfocus', 'onblur'];
+        const allElements = content.querySelectorAll('*');
+        allElements.forEach(el => {
+            attributes.forEach(attr => {
+                if (el.hasAttribute(attr)) {
+                    el.removeAttribute(attr);
+                }
+            });
+        });
+
+        return content.innerHTML;
+    }
+}
