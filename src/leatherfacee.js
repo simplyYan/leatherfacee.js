@@ -326,3 +326,15 @@ class LefaceFactory {
         }
     }
 }
+
+LefaceCrossPlatform(t) {
+        const e = navigator.userAgent.toLowerCase();
+        let r = "Desktop";
+        /iphone|ipad|android|windows phone/.test(e) ? (r = "Mobile") : t.Tablet && window.innerWidth >= 768 && window.innerWidth <= 1024 && (r = "Tablet");
+        const n = t[r];
+        if (n) {
+            const t = document.createElement("link");
+            (t.rel = "stylesheet"), (t.href = n), document.head.appendChild(t);
+        } else console.error("No CSS defined for the current platform.");
+    }
+}
