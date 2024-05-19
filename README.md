@@ -3,7 +3,21 @@
 leatherfacee.js is a framework that aims to bring together, improve and facilitate the features that other popular frameworks offer, in one place and with a unique and original touch, or for the more intimate, a fatal touch.
 
 ## Key features
-
+leatherfacee offers a wide range of features, all easy and quick to use. Our framework is meticulously optimized and tested, each line of code designed to be fast and perform exceptionally well, while remaining easy to use. See everything it offers:
+- Declarative rendering;
+- Component System;
+- Reactivity;
+- Directives;
+- Computed Properties;
+- Client routing to create single-page applications (SPA);
+- Virtual DOM;
+- Concurrent Mode (Experimental);
+- Static Site Generation (SSG);
+- Store (State Management);
+- Context API;
+- Services and Factories;
+- Animations;
+- 
 ## Get started now
 
 ## How to contribute
