@@ -20,7 +20,7 @@ leatherfacee offers a wide range of features, all easy and quick to use. Our fra
   
 ## Get started now
 You just need to link the leatherfacee script in your <head>, you can download it by clicking here or use a CDN:
-```
+```html
 <script src="https://cdn.jsdelivr.net/gh/simplyYan/leatherfacee.js@main/src/leatherfacee.js"></script>
 ```
 
