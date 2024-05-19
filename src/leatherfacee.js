@@ -1,3 +1,58 @@
+class ConcurrentMode {
+    constructor() {
+        this.queue = [];
+        this.isProcessing = false;
+    }
+
+    enqueue(component) {
+        this.queue.push(component);
+        this.processQueue();
+    }
+
+    processQueue() {
+        if (this.isProcessing) return;
+        this.isProcessing = true;
+
+        const processNext = () => {
+            if (this.queue.length === 0) {
+                this.isProcessing = false;
+                return;
+            }
+
+            const component = this.queue.shift();
+            component.render();
+            requestAnimationFrame(processNext);
+        };
+
+        processNext();
+    }
+}
+
+class LefaceStore {
+    constructor() {
+        this.state = {};
+        this.subscribers = [];
+    }
+
+    subscribe(callback) {
+        this.subscribers.push(callback);
+    }
+
+    notify() {
+        this.subscribers.forEach(callback => callback(this.state));
+    }
+
+    setState(newState) {
+        this.state = { ...this.state, ...newState };
+        this.notify();
+    }
+
+    getState() {
+        return this.state;
+    }
+}
+
+
 class ChainsawAnim {
     constructor(t) {
         (this.el = "string" == typeof t ? document.querySelector(t) : t), (this.transforms = []), (this.durationVal = "2s");
@@ -187,6 +242,7 @@ class Leface {
         this.staticSiteGenerator.generate();
     }
 }
+
 
 class StaticSiteGenerator {
     constructor(leface) {
