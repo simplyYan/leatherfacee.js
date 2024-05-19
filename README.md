@@ -17,6 +17,8 @@ leatherfacee offers a wide range of features, all easy and quick to use. Our fra
 - Context API;
 - Services and Factories;
 - Animations;
+- Platform-specific CSS loading;
+- HTTP requests;
   
 ## Get started now
 You just need to link the leatherfacee script in your <head>, you can download it by clicking here or use a CDN:
