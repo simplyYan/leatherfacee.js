@@ -19,6 +19,7 @@ leatherfacee offers a wide range of features, all easy and quick to use. Our fra
 - Animations;
 - Platform-specific CSS loading;
 - HTTP requests;
+- Own markup language (optional) to edit styles dynamically;
   
 ## Get started now
 You just need to link the leatherfacee script in your <head>, you can download it by clicking here or use a CDN:
