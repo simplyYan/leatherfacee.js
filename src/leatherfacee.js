@@ -52,7 +52,6 @@ class LefaceStore {
     }
 }
 
-
 class ChainsawAnim {
     constructor(t) {
         (this.el = "string" == typeof t ? document.querySelector(t) : t), (this.transforms = []), (this.durationVal = "2s");
@@ -162,7 +161,7 @@ class LefaceRender {
                 this.data[value] = element.value;
             });
         }
-        // Adicione mais diretivas conforme necessário
+
     };
 }
 class LefaceComponent {
@@ -243,7 +242,6 @@ class Leface {
     }
 }
 
-
 class StaticSiteGenerator {
     constructor(leface) {
         this.leface = leface;
@@ -267,7 +265,6 @@ class StaticSiteGenerator {
         });
     }
 }
-
 
 class LefaceDirectives {
     constructor() {
@@ -459,3 +456,83 @@ class LefaceUtils {
         return content.innerHTML;
     }
 }
+
+class LefaceValidator {
+    constructor(form) {
+        this.form = form;
+        this.errors = {};
+    }
+
+    addValidation(field, rules) {
+        if (!this.errors[field]) {
+            this.errors[field] = [];
+        }
+        rules.forEach(rule => {
+            this.errors[field].push(rule);
+        });
+    }
+
+    validate() {
+        let isValid = true;
+        this.clearErrors();
+        for (let field in this.errors) {
+            const fieldElement = this.form.querySelector(`[name="${field}"]`);
+            if (!fieldElement) continue;
+            const value = fieldElement.value;
+            this.errors[field].forEach(rule => {
+                const errorMessage = rule(value, fieldElement);
+                if (errorMessage) {
+                    this.addError(field, errorMessage);
+                    isValid = false;
+                }
+            });
+        }
+        return isValid;
+    }
+
+    addError(field, message) {
+        const errorContainer = this.form.querySelector(`.error-${field}`);
+        if (errorContainer) {
+            errorContainer.textContent = message;
+        } else {
+            const fieldElement = this.form.querySelector(`[name="${field}"]`);
+            if (fieldElement) {
+                const errorMessageElement = document.createElement('div');
+                errorMessageElement.className = `error error-${field}`;
+                errorMessageElement.textContent = message;
+                fieldElement.parentNode.appendChild(errorMessageElement);
+            }
+        }
+    }
+
+    clearErrors() {
+        const errorElements = this.form.querySelectorAll('.error');
+        errorElements.forEach(element => element.remove());
+    }
+}
+
+var LefaceRequests = {
+
+    get: function(url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                callback(xhr.responseText);
+            }
+        };
+        xhr.send();
+    },
+
+    post: function(url, data, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', url, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                callback(xhr.responseText);
+            }
+        };
+        xhr.send(JSON.stringify(data));
+    }
+};
