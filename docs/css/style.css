@@ -1,0 +1,70 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.hero-section {
+    background: #111;
+    color: #fff;
+    padding: 100px 0;
+}
+
+.hero-section .btn-primary {
+    background-color: #e91e63;
+    border: none;
+}
+
+.features-section, .advantages-section, .examples-section {
+    padding: 50px 0;
+}
+
+.features-section .card, .examples-section .card {
+    border: none;
+    transition: transform 0.3s;
+}
+
+.features-section .card:hover, .examples-section .card:hover {
+    transform: translateY(-10px);
+}
+
+.advantages-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.advantages-section ul li {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.testimonials-section {
+    background: #222;
+    color: #fff;
+    padding: 50px 0;
+}
+
+.testimonials-section .testimonial-box {
+    background: #333;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.contact-section {
+    padding: 50px 0;
+}
+
+.contact-section .form-control {
+    background: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+.footer {
+    background: #111;
+    color: #fff;
+    padding: 20px 0;
+}
+
+button {
+    background-color: #14FF00;
+    color: black;
+}
