@@ -647,3 +647,24 @@ class Leatherlang {
       LeatherlangChecker()
     }
   }
+
+class LefaceSignal {
+    constructor() {
+        this.listeners = {};
+    }
+
+    send(signal) {
+        if (this.listeners[signal]) {
+            this.listeners[signal].forEach(listener => {
+                listener();
+            });
+        }
+    }
+
+    catch(signal, callback) {
+        if (!this.listeners[signal]) {
+            this.listeners[signal] = [];
+        }
+        this.listeners[signal].push(callback);
+    }
+}
